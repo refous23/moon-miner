@@ -13,13 +13,8 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* * {
-      outline: 1px solid red;
-    } */
-
     body {
       padding: 1px;
-      /* background-color: aqua; */
       background-image: url(https://i.pinimg.com/originals/1e/64/c3/1e64c3289a248160c26a3b57b221e282.png);
       background-position: center;
       background-size: cover;
@@ -32,8 +27,6 @@
     .total-cheese2 {
       border-end-end-radius: .75em;
     }
-
-    .stats-style {}
   </style>
 
 </head>
@@ -64,11 +57,11 @@
           </div>
           <div class="col-4 m-auto p-1">
             <h2 class="bg-warning total-cheese p-2 m-auto">
-              💎<span id="total-diamonds-mined">200</span>💎
+              💎<span id="total-diamonds-mined">0</span>💎
             </h2>
           </div>
           <div class="col-4 m-auto p-1">
-            <p class="bg-warning total-cheese p-2 m-auto fw-bold">+<span id="auto-diamonds">0</span> auto</p>
+            <p class="bg-warning total-cheese p-2 m-auto fw-bold">+<span id="auto-diamonds"></span> auto</p>
           </div>
         </class>
       </div>
@@ -81,14 +74,15 @@
             <!-- <div><button>button1</button></div>
             <div><button>button2</button></div> -->
             <h6 class="text-center text-light">CLICK UPGRADES</h6>
-            <h1 class="bg-light p-2 m-auto border-bottom" onclick="buyPickAxe()">⛏<span>----- <span
-                  id="pickaxe-cost text-dark">5</span>💎</span></h1>
-            <h1 class="bg-light p-2 m-auto" onclick="buyTractor()">🚜<span>-----10💎</span></h1>
+            <h1 class="bg-light p-2 m-auto border-bottom" onclick="buyPickAxe()">⛏-----<span
+                id="pickaxe-cost">5</span>💎</h1>
+            <h1 class="bg-light p-2 m-auto" onclick="buyTractor()">🚜-----<span id="tractor-cost">10</span>💎</h1>
           </div>
           <div class="col-3 bg-primary p-1">
             <h6 class="text-center text-light">AUTO UPGRADES</h6>
-            <h1 class="bg-light p-2 m-auto border-bottom" onclick="buyAlien()">👽<span>-----15💎</span></h1>
-            <h1 class="bg-light p-2 m-auto" onclick="buyUFO()">🛸<span>-----20💎</span></h1>
+            <h1 class="bg-light p-2 m-auto border-bottom" onclick="buyAlien()">👽-----<span id="alien-cost">15</span>💎
+            </h1>
+            <h1 class="bg-light p-2 m-auto" onclick="buyUFO()">🛸-----<span id="ufo-cost">20</span>💎</h1>
           </div>
           <div class="col-3 text-light p-1 bg-primary">
             <!-- <p class="bg-danger total-cheese p-2 m-auto text-center">Click Status</p> -->
@@ -107,16 +101,9 @@
                 id="ufo-total-stat">0</span>💎</h1>
           </div>
         </div>
-
       </div>
     </section>
   </main>
-
-
-
-
-
-
 
   <script src="app.js"></script>
 </body>

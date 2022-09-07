@@ -1,4 +1,4 @@
-let moonClickCount = 200
+let moonClickCount = 0
 let pickAxeCost = 5
 let tractorCost = 10
 let alienCost = 15
@@ -15,115 +15,88 @@ let pickaxeDiamondTotal = 0
 let tractorDiamondTotal = 0
 let alienDiamondTotal = 0
 let ufoDiamondTotal = 0
-let totalDiamondsPerClick = (pickaxeDiamondTotal + tractorDiamondTotal + alienDiamondTotal + ufoDiamondTotal)
-
+let noUpgradeClick = 1
+let totalDiamondsPerClick = 0
+let totalAutoDiamonds = 0
 
 function mine() {
-  // moonClickCount++
-  // let moonClickCountElem = document.getElementById("total-diamonds-mined")
-  // moonClickCountElem.innerText = moonClickCount.toString()
-  // if (pickaxeDiamondTotal == 0) {
-  //   moonClickCount++
-  //   let moonClickCountElem = document.getElementById("total-diamonds-mined")
-  //   moonClickCountElem.innerText = moonClickCount.toString()
-  // } else {
-  //   let moonClickCountElem = document.getElementById("total-diamonds-mined")
-  //   moonClickCountElem.innerText = (moonClickCount + pickaxeDiamondTotal + tractorDiamondTotal + alienDiamondTotal + ufoDiamondTotal)
-  // }
   if (pickaxeDiamondTotal > 1 || tractorDiamondTotal > 1) {
-    moonClickCount = moonClickCount + pickaxeDiamondTotal + tractorDiamondTotal + alienDiamondTotal + ufoDiamondTotal
+    moonClickCount = moonClickCount + pickaxeDiamondTotal + tractorDiamondTotal + noUpgradeClick
     let moonClickCountElem = document.getElementById("total-diamonds-mined")
     moonClickCountElem.innerText = moonClickCount.toString()
+
+    totalDiamondsPerClick = pickaxeDiamondTotal + tractorDiamondTotal + noUpgradeClick
+    let totalDiamondsPerClickElem = document.getElementById("diamonds-per-click")
+    totalDiamondsPerClickElem.innerText = totalDiamondsPerClick.toString()
   } else {
     moonClickCount++
-  let moonClickCountElem = document.getElementById("total-diamonds-mined")
-  moonClickCountElem.innerText = moonClickCount.toString()
+    let moonClickCountElem = document.getElementById("total-diamonds-mined")
+    moonClickCountElem.innerText = moonClickCount.toString()
   }
-
-  // if (tractorPurchased < 1) {
-  //   moonClickCount++
-  //   let moonClickCountElem = document.getElementById("total-diamonds-mined")
-  //   moonClickCountElem.innerText = moonClickCount.toString()
-  // } else {
-  //   moonClickCount += tractorDiamondTotal
-  //   let moonClickCountElem = document.getElementById("total-diamonds-mined")
-  //   moonClickCountElem.innerText = moonClickCount.toString()
-  // }
-  
-  
-  // if (pickaxeDiamondTotal > 0) {
-  //   moonClickCount += pickaxeDiamondTotal
-  // }
-
-  console.log(moonClickCount);
 }
+
 
 function buyPickAxe() {
   if (moonClickCount >= pickAxeCost) {
     pickAxePurchased++
     moonClickCount -= pickAxeCost;
+    pickAxeCost++
     pickaxeDiamondTotal = pickAxePurchased * pickAxeMineMultiplier
-  let moonClickCountElem = document.getElementById("total-diamonds-mined")
-  moonClickCountElem.innerText = moonClickCount.toString()
+    let moonClickCountElem = document.getElementById("total-diamonds-mined")
+    moonClickCountElem.innerText = moonClickCount.toString()
 
-  let pickAxePurchasedElem = document.getElementById("total-pickaxe-purchased")
-  pickAxePurchasedElem.innerText = pickAxePurchased.toString()
+    let pickAxePurchasedElem = document.getElementById("total-pickaxe-purchased")
+    pickAxePurchasedElem.innerText = pickAxePurchased.toString()
 
-  let pickaxeDiamondTotalElem = document.getElementById("pickaxe-total-stat")
-  pickaxeDiamondTotalElem.innerText = pickaxeDiamondTotal.toString()
+    let pickaxeDiamondTotalElem = document.getElementById("pickaxe-total-stat")
+    pickaxeDiamondTotalElem.innerText = pickaxeDiamondTotal.toString()
 
-
-  // moonClickCount.toString()
-  // console.log(moonClickCount);
+    let pickAxeCostElem = document.getElementById("pickaxe-cost")
+    pickAxeCostElem.innerText = pickAxeCost.toString()
+  }
 }
-}
+
 
 function buyTractor() {
   if (moonClickCount >= tractorCost) {
     tractorPurchased++
     moonClickCount -= tractorCost;
-    tractorDiamondTotal = tractorPurchased * tractorMineMultiplier
     tractorCost++
-  let moonClickCountElem = document.getElementById("total-diamonds-mined")
-  moonClickCountElem.innerText = moonClickCount.toString()
+    tractorDiamondTotal = (tractorPurchased * tractorMineMultiplier) + noUpgradeClick
 
-  let tractorPurchasedElem = document.getElementById("total-tractor-purchased")
-  tractorPurchasedElem.innerText = tractorPurchased.toString()
+    let moonClickCountElem = document.getElementById("total-diamonds-mined")
+    moonClickCountElem.innerText = moonClickCount.toString()
 
-  let tractorDiamondTotalElem = document.getElementById("tractor-total-stat")
-  tractorDiamondTotalElem.innerText = tractorDiamondTotal.toString()
+    let tractorPurchasedElem = document.getElementById("total-tractor-purchased")
+    tractorPurchasedElem.innerText = tractorPurchased.toString()
 
-  let tractorCostElem = document.getElementById("pickaxe-cost")
-  tractorCostElem.innerText = tractorCost.toString()
+    let tractorDiamondTotalElem = document.getElementById("tractor-total-stat")
+    tractorDiamondTotalElem.innerText = tractorDiamondTotal.toString()
 
-  // moonClickCount.toString()
-  // console.log(moonClickCount);
-}
+    let tractorCostElem = document.getElementById("tractor-cost")
+    tractorCostElem.innerText = tractorCost.toString()
+  }
 }
 
 function buyAlien() {
   if (moonClickCount >= alienCost) {
     alienPurchased++
     moonClickCount -= alienCost;
+    alienCost++
     alienDiamondTotal = alienPurchased * alienMineMultiplier
-  let moonClickCountElem = document.getElementById("total-diamonds-mined")
-  moonClickCountElem.innerText = moonClickCount.toString()
 
-  let alienPurchasedElem = document.getElementById("total-alien-purchased")
-  alienPurchasedElem.innerText = alienPurchased.toString()
+    let moonClickCountElem = document.getElementById("total-diamonds-mined")
+    moonClickCountElem.innerText = moonClickCount.toString()
 
-  let alienDiamondTotalElem = document.getElementById("alien-total-stat")
-  alienDiamondTotalElem.innerText = alienDiamondTotal.toString()
+    let alienPurchasedElem = document.getElementById("total-alien-purchased")
+    alienPurchasedElem.innerText = alienPurchased.toString()
 
-  
+    let alienDiamondTotalElem = document.getElementById("alien-total-stat")
+    alienDiamondTotalElem.innerText = alienDiamondTotal.toString()
 
-  // moonClickCount.toString()
-  // console.log(moonClickCount);
-}
-setInterval(mine, 3000)
-setInterval(() => {
-  
-}, interval);
+    let alienCostElem = document.getElementById("alien-cost")
+    alienCostElem.innerText = alienCost.toString()
+  }
 }
 
 
@@ -132,23 +105,29 @@ function buyUFO() {
     ufoPurchased++
     moonClickCount -= ufoCost;
     ufoDiamondTotal = ufoPurchased * ufoMineMultiplier
+    ufoCost++
+
+    let moonClickCountElem = document.getElementById("total-diamonds-mined")
+    moonClickCountElem.innerText = moonClickCount.toString()
+
+    let ufoPurchasedElem = document.getElementById("total-ufo-purchased")
+    ufoPurchasedElem.innerText = ufoPurchased.toString()
+
+    let ufoDiamondTotalElem = document.getElementById("ufo-total-stat")
+    ufoDiamondTotalElem.innerText = ufoDiamondTotal.toString()
+
+    let ufoCostElem = document.getElementById("ufo-cost")
+    ufoCostElem.innerText = ufoCost.toString()
+  }
+}
+setInterval(autoMine, 5000)
+
+function autoMine() {
+  moonClickCount = moonClickCount + alienDiamondTotal + ufoDiamondTotal
+  totalAutoDiamonds = alienDiamondTotal + ufoDiamondTotal
   let moonClickCountElem = document.getElementById("total-diamonds-mined")
   moonClickCountElem.innerText = moonClickCount.toString()
 
-  let ufoPurchasedElem = document.getElementById("total-ufo-purchased")
-  ufoPurchasedElem.innerText = ufoPurchased.toString()
-
-  let ufoDiamondTotalElem = document.getElementById("ufo-total-stat")
-  ufoDiamondTotalElem.innerText = ufoDiamondTotal.toString()
-
-
-  // moonClickCount.toString()
-  // console.log(moonClickCount);
+  let totalAutoDiamondsElem = document.getElementById("auto-diamonds")
+  totalAutoDiamondsElem.innerText = totalAutoDiamonds.toString()
 }
-setInterval(mine, 3000)
-}
-
-// function pickaxeClickStatTotal() {
-//   pickaxeDiamondTotal = pickAxePurchased * pickAxeMineMultiplier
-  
-// }
